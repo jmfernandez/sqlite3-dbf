@@ -1,6 +1,7 @@
 /*
 Programmed by Alexey Pechnikov (pechnikov@mobigroup.ru) for SQLite
     on base of the PgDBF codes
+Fixed by Jose M. Fernandez (jose.m.fernandez@bsc.es) to escape tildes
 */
 
 /* PgDBF - Quickly convert DBF files to PostgreSQL                       */
@@ -159,6 +160,10 @@ static void safeprintbuf(const char *buf, const size_t inputsize)
 	case '\t':
 	    *t++ = '\\';
 	    *t++ = 't';
+	    break;
+	case '\'':
+	    *t++ = '\'';
+	    *t++ = '\'';
 	    break;
 	default:
 	    *t++ = *s;
